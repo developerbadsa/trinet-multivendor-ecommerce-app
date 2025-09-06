@@ -3,7 +3,7 @@ import { errorMiddleware } from '../../../packages/error-handler/error-midleware
 import cookieParser from "cookie-parser";
 
 const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 6001;
+const port =  6001;
 import cors from "cors";
 const app = express();
 
