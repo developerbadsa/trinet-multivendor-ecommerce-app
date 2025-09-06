@@ -1,0 +1,31 @@
+services:
+  # Public gateway
+  - type: web
+    name: api-gateway
+    runtime: docker
+    rootDir: apps/api-gatway
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      # Inject private service address -> http://<hostport>
+      - key: AUTH_HOSTPORT
+        fromService:
+          name: auth-service
+          type: pserv
+          property: hostport
+      - key: NODE_ENV
+        value: production
+
+  # Private auth API
+  - type: pserv
+    name: auth-service
+    runtime: docker
+    rootDir: apps/auth-service
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # add your secrets here (set in dashboard after first deploy)
+      - key: DATABASE_URL
+        sync: false

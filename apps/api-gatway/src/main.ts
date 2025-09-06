@@ -8,7 +8,9 @@ import axios from "axios";
 import cookieParser from "cookie-parser";
 const app = express();
 
-const port =  8080;
+
+const port = Number(process.env.PORT) || 8080;      // local: 8080; Render sets PORT
+const AUTH_HOSTPORT = process.env.AUTH_HOSTPORT || "localhost:6001"; // internal URL on Render
 
 app.use(
   cors({
@@ -44,7 +46,7 @@ app.get("/gatway-health", (req, res) => {
 
 app.use("/", proxy("http://localhost:6001"));
 
-const server = app.listen(port, () => {
+const server = app.listen(port,"0.0.0.0", () => {
   console.log(`Listening proxy at http://localhost:${port}/api`);
 });
 server.on("error", console.error);

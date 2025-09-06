@@ -33,7 +33,7 @@ app.get('/testing', (req, res) => {
     res.send({ message: 'testing'});
 });
 
-const server = app.listen(port, host, () => {
+const server = app.listen(port, "0.0.0.0", () => {
     console.log(`[ ready ] http://${host}:${port}`);
 });
 
