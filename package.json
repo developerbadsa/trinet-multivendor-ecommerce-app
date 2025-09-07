@@ -16,7 +16,8 @@
     "express-rate-limit": "^8.0.1",
     "morgan": "^1.10.1",
     "prisma": "^6.15.0",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@nx/docker": "21.4.1",
@@ -50,7 +51,6 @@
     "react-refresh": "^0.10.0",
     "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
-    "tslib": "^2.8.1",
     "typescript": "~5.8.2",
     "webpack-cli": "^5.1.4"
   },
