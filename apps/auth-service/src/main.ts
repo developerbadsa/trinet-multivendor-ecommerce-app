@@ -24,7 +24,7 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/health", (_req, res) => {
-  res.json({ ok: true });
+  res.json({ ok: true, message: "working better auth server" });
 });
 
 // error handler LAST
