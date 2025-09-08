@@ -4,8 +4,8 @@ services:
     runtime: docker
     plan: free
     rootDir: apps/api-gatway
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
+    dockerfilePath: ./Dockerfile      # relative to rootDir
+    dockerContext: ../..              # so Nx root is available
     envVars:
       - key: AUTH_HOSTPORT
         fromService:
@@ -20,8 +20,8 @@ services:
     runtime: docker
     plan: free
     rootDir: apps/auth-service
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
+    dockerfilePath: ./Dockerfile      # relative to rootDir
+    dockerContext: ../..              # so Nx root is available
     envVars:
       - key: NODE_ENV
         value: production
