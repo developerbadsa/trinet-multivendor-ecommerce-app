@@ -1,0 +1,24 @@
+services:
+  auth-service:
+    build:
+      context: .
+      dockerfile: apps/auth-service/Dockerfile
+    image: auth-service
+    environment:
+      - PORT=10000
+      # - DATABASE_URL=postgres://user:pass@host:5432/db
+    ports:
+      - "6001:10000"
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: apps/api-gatway/Dockerfile
+    image: api-gateway
+    environment:
+      - AUTH_HOSTPORT=auth-service:10000   # talk to auth via compose network
+      - PORT=10000
+    ports:
+      - "8080:10000"
+    depends_on:
+      - auth-service
