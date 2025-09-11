@@ -8,8 +8,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 
 const port = Number(process.env.PORT) || 8080; // local default 8080
-const AUTH_HOSTPORT =
-  process.env.AUTH_HOSTPORT || "localhost:6001"; // local fallback when not using compose
+const authServiceUrl = process.env.AUTH_HOSTPORT || "http://localhost:6001";
 
 app.use(
   cors({
@@ -41,7 +40,7 @@ app.get("/gateway-health", (_req, res) => {
 });
 
 // Proxy everything else to auth-service by default (adjust prefix if you want)
-app.use("/", proxy(`http://${AUTH_HOSTPORT}`));
+app.use("/", proxy(`${authServiceUrl}`));
 
 const server = app.listen(port, "0.0.0.0", () => {
   console.log(`Gateway listening at http://localhost:${port}`);

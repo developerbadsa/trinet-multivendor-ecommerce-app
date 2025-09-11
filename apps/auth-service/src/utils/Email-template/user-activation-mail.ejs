@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Email Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f7;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .email-wrapper {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .email-header {
+      background: #2d89ef;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+    .email-body {
+      padding: 30px 20px;
+    }
+    .otp-code {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2d89ef;
+      margin: 20px 0;
+      text-align: center;
+    }
+    .email-footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 13px;
+      color: #777;
+      background: #f9f9f9;
+    }
+    a {
+      color: #2d89ef;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="email-header">
+      <h2>Verify Your Email</h2>
+    </div>
+    <div class="email-body">
+      <p>Hello <%= name %>,</p>
+      <p>Please use the following verification code to activate your account. This code will expire in <strong>5 minutes</strong>.</p>
+      
+      <div class="otp-code"><%= otp %></div>
+
+      <p>If you did not register for an account, you can safely ignore this email.</p>
+      <p>Thank you,<br/>The Eshop Team</p>
+    </div>
+    <div class="email-footer">
+      <p>If you have any questions, feel free to contact us at 
+        <a href="mailto:support@example.com">support@example.com</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

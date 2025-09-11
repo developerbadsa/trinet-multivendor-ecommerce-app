@@ -6,11 +6,11 @@ import { errorMiddleware } from "../../../packages/error-handler/error-midleware
 const app = express();
 
 const host = process.env.HOST ?? "localhost";
-const port = Number(process.env.PORT) || 6001; // local default 6001; Render/Docker will inject PORT
+const port = Number(process.env.PORT) || 6001; 
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"], // no trailing slash
+    origin: ["http://localhost:3000"], 
     allowedHeaders: ["Authorization", "Content-Type"],
     credentials: true,
   })
@@ -34,6 +34,7 @@ const server = app.listen(port, "0.0.0.0", () => {
   console.log(`[ ready ] http://${host}:${port}`);
 });
 
-server.on("error", (err) => {
-  console.error("server error", err);
+server.on("error", (err) => { 
+  
+  console.error("server error from auth service", err);
 });
