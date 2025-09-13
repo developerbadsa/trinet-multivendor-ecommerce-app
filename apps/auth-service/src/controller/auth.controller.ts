@@ -22,7 +22,6 @@ export const userRegistration = async (
     if (isExistingEmail) {
       return next(new Error("Email already exists"));
     }
-
     await checkOTPrestrictions(email, next);
     await trackOTPRequests(email, next);
     await sendOTP(email, name, "user-activation-mail");

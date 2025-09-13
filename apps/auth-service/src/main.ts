@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "../../../packages/error-handler/error-midleware";
+import router from './routes/auth.router';
 
 const app = express();
 
@@ -26,6 +27,10 @@ app.get("/", (_req, res) => {
 app.get("/health", (_req, res) => {
   res.json({ ok: true, message: "working better auth server" });
 });
+
+// Routes 
+app.use("/api", router)
+
 
 // error handler LAST
 app.use(errorMiddleware);

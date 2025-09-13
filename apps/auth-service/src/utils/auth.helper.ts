@@ -11,14 +11,21 @@ export const validateRegistrationData = (
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const { name, email, password, phone_number, country } = data;
+  console.log(data);
 
-  if (
-    !name ||
-    !email ||
-    !password ||
-    (userType === "seller" && (!phone_number || !country))
-  ) {
-    throw new ValidationError("missing required fields");
+  if (!name) {
+    throw new ValidationError("Name is required");
+  }
+  if (!email) {
+    throw new ValidationError("Email is required");
+  }
+  if (!password) {
+    throw new ValidationError("Password is required");
+  }
+  if (userType === "seller" && (!phone_number || !country)) {
+    throw new ValidationError(
+      "user type select is required for register account; phone number and country is required"
+    );
   }
 
   if (!emailRegex.test(email)) {
@@ -72,16 +79,15 @@ export const trackOTPRequests = async (email: string, next: NextFunction) => {
   await redis.set(otpRequestKey, otpRequests + 1, "EX", 3600); // count resets after 1 hour
 };
 
-// create otp and send opt to email 
+// create otp and send opt to email
 export const sendOTP = async (
-  name: string,
   email: string,
+  name: string,
   template: string
 ) => {
   const otp = crypto.randomInt(10000, 99999).toString();
 
   // send email
-
   sendEmail(email, "Verify Email with OTP", template, { name, otp });
   await redis.set(`otp:${email}`, otp, "EX", 300); // OTP valid for 5 minutes
   await redis.set(`otp_cooldown:${email}`, "true", "EX", 60); // Cooldown period of 1 minute
