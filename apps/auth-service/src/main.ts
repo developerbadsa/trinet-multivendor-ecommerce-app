@@ -6,14 +6,6 @@ import router from "./routes/auth.router";
 import swaggerUi from "swagger-ui-express";
 
 
-//   swagger: "2.0",
-//   info: {
-//     title: "Auth Service",
-//     description: "Fallback Swagger",
-//     version: "1.0.0",
-//   },
-//   paths: {}
-// };
 let swaggerDocument = require("./swagger-output.json")
 
 
