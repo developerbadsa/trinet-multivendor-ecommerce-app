@@ -12,6 +12,13 @@ router.post('/login', async (req: Request, res: Response) => {
   res.status(200).json({ message: 'User logged in successfully' });
 });
 
+
+// health test route
+router.post('/auth-test', async (req: Request, res: Response) => {
+  
+  res.status(200).json({ message: 'auth running properly' });
+});
+
 // Example: Logout route
 router.post('/logout', (req: Request, res: Response) => {
   // Logout logic here
