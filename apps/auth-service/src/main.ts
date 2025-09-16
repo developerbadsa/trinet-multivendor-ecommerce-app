@@ -6,8 +6,6 @@ import router from "./routes/auth.router";
 import swaggerUi from "swagger-ui-express";
 
 
-
-// let swaggerDocument = {
 //   swagger: "2.0",
 //   info: {
 //     title: "Auth Service",
@@ -18,18 +16,6 @@ import swaggerUi from "swagger-ui-express";
 // };
 let swaggerDocument = require("./swagger-output.json")
 
-// Look for swagger-output.json next to compiled main.js
-// if (fs.existsSync(swaggerPath)) {
-//   swaggerDocument = require(swaggerPath);
-//   console.log(" Swagger file loaded from", swaggerPath);
-// } else {
-//   console.warn(" Swagger file not found, using fallback Swagger doc");
-// }
-
-console.log(
-  swaggerDocument,
-  "=====================================================================docs path", swaggerDocument
-);
 
 const app = express();
 
