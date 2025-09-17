@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { userRegistration, verifyUser } from './../controller/auth.controller';
+import { userRegistration, verifyUser, loginUser } from './../controller/auth.controller';
 
 const router = Router();
 
@@ -7,13 +7,8 @@ const router = Router();
 router.post('/user-registration', userRegistration);
 router.post('/verify-user', verifyUser);
 
-
-
 // Login route
-router.post('/login', async (req: Request, res: Response) => {
-  // Authentication logic here
-  res.status(200).json({ message: 'User logged in successfully' });
-});
+router.post('/login-user', loginUser);
 
 
 // health test route

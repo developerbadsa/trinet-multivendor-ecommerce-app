@@ -7,9 +7,7 @@
   },
   "host": "localhost:6001",
   "basePath": "/api",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/user-registration": {
       "post": {
@@ -21,14 +19,14 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "example": "Rahim Badsa"
-                },
                 "email": {
                   "example": "rahimbadsa723@gmail.com"
                 },
-                 "password": {
-                  "example": "12345678"
+                "password": {
+                  "example": "123456789"
+                },
+                "name": {
+                  "example": "Rahim Badsa"
                 }
               }
             }
@@ -55,10 +53,10 @@
                   "example": "rahimbadsa723@gmail.com"
                 },
                 "otp": {
-                  "example": ""
+                  "example": "any"
                 },
                 "password": {
-                  "example": "1235678"
+                  "example": "123456789"
                 },
                 "name": {
                   "example": "Rahim Badsa"
@@ -74,9 +72,26 @@
         }
       }
     },
-    "/login": {
+    "/login-user": {
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
