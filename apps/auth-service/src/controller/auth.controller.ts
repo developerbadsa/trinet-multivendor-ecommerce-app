@@ -6,6 +6,7 @@ import {
   verifyOtp,
   trackOTPRequests,
   checkOTPrestrictions,
+  handleForgotPassword,
 } from "../utils/auth.helper";
 import bcrypt from "bcrypt";
 import {
@@ -129,13 +130,21 @@ export const loginUser = async (
     setCookie(res, "refreshToken", refreshToken);
     setCookie(res, "accessToken", accessToken);
 
-    res
-      .status(200)
-      .send({
-        message: "Login successful",
-        user: { id: user.id, email: user.email, name: user.name },
-      });
+    res.status(200).send({
+      message: "Login successful",
+      user: { id: user.id, email: user.email, name: user.name },
+    });
   } catch (err) {
     next(err);
   }
+};
+
+//forgot password
+export const userForgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  await handleForgotPassword(req, res, next, "user");
+  
 };
