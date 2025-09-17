@@ -1,12 +1,15 @@
 import { Router, Request, Response } from 'express';
-import { userRegistration } from './../controller/auth.controller';
+import { userRegistration, verifyUser } from './../controller/auth.controller';
 
 const router = Router();
 
 // //  Register route
 router.post('/user-registration', userRegistration);
+router.post('/verify-user', verifyUser);
 
-// Example: Login route
+
+
+// Login route
 router.post('/login', async (req: Request, res: Response) => {
   // Authentication logic here
   res.status(200).json({ message: 'User logged in successfully' });

@@ -89,6 +89,7 @@ export const sendOTP = async (
 
   // send email
   sendEmail(email, "Verify Email with OTP", template, { name, otp });
+  console.log(otp, "otp")
   await redis.set(`otp:${email}`, otp, "EX", 300); // OTP valid for 5 minutes
   await redis.set(`otp_cooldown:${email}`, "true", "EX", 60); // Cooldown period of 1 minute
 };
@@ -121,7 +122,11 @@ export const verifyOtp = async (
     }
 
     await redis.set(failedAttemptsKey, failedAttempts + 1, "EX", 300); // count resets after 5 minutes
-    return next(new Error(`Incorrect OTP. Please try again. ${2 - failedAttempts} attempts left.`));
+    return next(
+      new Error(
+        `Incorrect OTP. Please try again. ${2 - failedAttempts} attempts left.`
+      )
+    );
   }
 
   await redis.del(`otp:${email}`, failedAttemptsKey); // OTP verified, remove it and reset attempts
