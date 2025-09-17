@@ -1,9 +1,9 @@
 import crypto from "crypto";
-import { ValidationError } from "../../../../packages/error-handler";
-import redis from "./../../../../packages/libs/redis/index";
+import redis from "@packages/libs/redis/index";
 import { sendEmail } from "./SendMail/index";
 import { NextFunction, Request, Response } from "express";
-import prisma from "./../../../../packages/libs/prisma/index";
+import prisma from "@packages/libs/prisma/index";
+import { ValidationError } from "@packages/error-handler/index";
 
 export const validateRegistrationData = (
   data: any,
@@ -161,9 +161,32 @@ export const handleForgotPassword = async (
     //generate and send otp
     await sendOTP(email, user.name, "forgot-password-user-mail");
 
-    res.status(200).json({ message: "OTP sent to your email, please verify your account" });
-
+    res
+      .status(200)
+      .json({ message: "OTP sent to your email, please verify your account" });
   } catch (err) {
     return next(err);
+  }
+};
+
+export const verifyForgetPasswordOtp = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+      throw new ValidationError(" Email and otp are required");
+    }
+
+    await verifyOtp(email, otp, next);
+
+    res
+      .status(200)
+      .json({ message: "otp verified. you can reset password now" });
+  } catch (err) {
+    next(err);
   }
 };

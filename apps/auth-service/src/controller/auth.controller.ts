@@ -7,6 +7,7 @@ import {
   trackOTPRequests,
   checkOTPrestrictions,
   handleForgotPassword,
+  verifyForgetPasswordOtp
 } from "../utils/auth.helper";
 import bcrypt from "bcrypt";
 import {
@@ -146,5 +147,52 @@ export const userForgotPassword = async (
   next: NextFunction
 ) => {
   await handleForgotPassword(req, res, next, "user");
-  
+};
+
+//verify otp for forgot password
+export const verifyForgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+
+  await verifyForgetPasswordOtp(req, res, next);
+
+
+};
+//reset password
+export const resetUserPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, newPassword } = req.body;
+    if (!email || !newPassword) {
+      return next(new ValidationError("email and new password are required"));
+    }
+
+    const user = await prisma.users.findUnique({ where: { email } });
+    if (!user) {
+      return next(new AuthError("user does not exist"));
+    }
+
+    //compare new password is different from old password
+    const isSamePassword = await bcrypt.compare(newPassword, user.password!);
+    if (isSamePassword) {
+      return next(
+        new ValidationError("new password must be different from old password")
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword.toString(), 10); // Hash the password
+    await prisma.users.update({
+      where: { email },
+      data: { password: hashedPassword },
+    });
+
+    res.status(200).json({ message: "Password reset successful" });
+  } catch (err) {
+    next(err);
+  }
 };
