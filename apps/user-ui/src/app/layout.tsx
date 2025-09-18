@@ -13,11 +13,12 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-poppins",
 });
-const roboto = Poppins({
+const roboto = Roboto({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "900"],
   variable: "--font-roboto",
 });
+
 
 export default function RootLayout({
   children,
@@ -26,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${poppins.variable}`}>
+      <body className={`${poppins.variable} ${roboto.variable}`}>
         <Header></Header>
         {children}
       </body>

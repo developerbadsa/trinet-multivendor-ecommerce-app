@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, Heart, ShoppingCart  } from "lucide-react";
+import { Search, Heart, ShoppingCart } from "lucide-react";
 import ProfileIcon from "./../../../../assets/svgs/ProfileIcons";
-import HeaderBottom from './header-bottom';
+import HeaderBottom from "./header-bottom";
 
 const Header = () => {
   return (
@@ -62,7 +62,7 @@ const Header = () => {
 
           {/* cart */}
           <div className="relative hover:text-red-400">
-            <ShoppingCart  size={38} />
+            <ShoppingCart size={38} />
             <div className="absolute flex items-center justify-center w-6 h-6 bg-red-400 rounded-full top-[-8px] left-[20px]">
               <span className="text-white"> 0</span>
             </div>
@@ -70,10 +70,10 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="border-b border-b-gray-200"/>
-      
-        <HeaderBottom></HeaderBottom>
-      
+      <div className="border-b border-b-gray-200" />
+
+      {/* header bottom part */}
+      <HeaderBottom></HeaderBottom>
     </div>
   );
 };
