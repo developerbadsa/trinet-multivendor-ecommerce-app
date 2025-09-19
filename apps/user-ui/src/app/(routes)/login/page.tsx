@@ -52,7 +52,9 @@ const Login = () => {
           <SectionDivider>or Sign in with Email </SectionDivider>
 
           {/* form */}
-          <form onSubmit={handleSubmit(onSubmit)}></form>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" />
+          </form>
         </div>
       </div>
     </div>
