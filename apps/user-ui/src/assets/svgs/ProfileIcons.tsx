@@ -8,7 +8,7 @@ const ProfileIcon = () => {
       height="28px"
       viewBox="0 0 24 24"
       className="w-7 h-7"
-      fill="currentColor" // 👈 default fill is currentColor
+      fill="currentColor" // 
     >
       <g clipPath="url(#clip0_15_82)">
         <rect width={24} height={24} fill="none" /> {/* remove white background */}
