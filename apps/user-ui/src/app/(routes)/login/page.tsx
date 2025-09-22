@@ -6,6 +6,8 @@ import Link from "next/link";
 import GoogleButton from "./../../shared/components/buttons/google-button";
 import SectionDivider from "./../../shared/components/Divider/";
 import { Eye, EyeOff } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 type FormData = {
   email: string;
@@ -24,8 +26,23 @@ const Login = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+     try {
+    const res = await axios.post(
+      "http://localhost:6001/api/login-user",
+      data,
+      { headers: { "Content-Type": "application/json" } }
+    );
+
+    toast.success(res.data.message || "Login successful!");
+    console.log("Logged in user:", res.data.user);
+
+    //  here you can save user/token in localStorage or redirect
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+    router.push("/");
+  } catch (err: any) {
+    toast.error(err?.response?.data?.message || "Login failed!");
+  }
   };
 
   return (
