@@ -30,10 +30,10 @@ const Login = () => {
 
   return (
     <div className="w-full py-10 min-h-[86vh] bg-gray-200">
-      <h1 className="text-4xl font-semibold text-center text-black font-poppins">
+      <h1 className="text-4xl font-semibold text-center text-black font-Poppins">
         Login
       </h1>
-      <p className="py-3 text-lg text-center text-black">Home. Login</p>
+      <p className="py-3 text-lg font-bold text-center text-black font-Roboto">Home. Login</p>
 
       <div className="flex justify-center w-full ">
         <div className="md:w-[480px] bg-white shadow rounded-lg py-4 px-8 ">
@@ -119,7 +119,7 @@ const Login = () => {
               </div>
             </div>
 
-            <button className="w-full py-2 text-lg bg-black rounded cursor-pointer">
+            <button className="w-full py-2 text-lg text-white bg-black rounded cursor-pointer">
               Login
             </button>
             {serverError && <p className="text-red-500">{serverError}</p>}

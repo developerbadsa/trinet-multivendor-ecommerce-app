@@ -12,7 +12,7 @@ const authServiceUrl = process.env.AUTH_HOSTPORT || "http://localhost:6001";
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"], // no trailing slash
+    origin: ["http://localhost:3000", "http://localhost:6001"], // no trailing slash
     allowedHeaders: ["Authorization", "Content-Type"],
     credentials: true,
   })

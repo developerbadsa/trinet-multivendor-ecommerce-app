@@ -33,7 +33,7 @@ export const userRegistration = async (
     });
 
     if (isExistingEmail) {
-      return next(new Error("Email already exists"));
+      return next(new AuthError("Email already exists"));
     }
     await checkOTPrestrictions(email, next);
     await trackOTPRequests(email, next);
